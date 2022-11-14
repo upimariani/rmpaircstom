@@ -33,6 +33,14 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="<?= base_url('Gudang/cBahanBaku') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cBahanBaku') {
+																						echo 'active';
+																					}  ?>">
+						<i class="nav-icon fas fa-tag"></i>
+						<p>Informasi Bahan Baku</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="<?= base_url('Gudang/cTransaksiBB') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksiBB') {
 																							echo 'active';
 																						}  ?>">

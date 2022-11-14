@@ -66,6 +66,29 @@ class mProduk extends CI_Model
         $this->db->where('id_size', $id);
         $this->db->delete('size');
     }
+
+
+    //gudang
+    public function bb()
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->where('price_gudang=0');
+
+        return $this->db->get()->result();
+    }
+    public function update_harga($id, $data)
+    {
+        $this->db->where('id_produk', $id);
+        $this->db->update('produk', $data);
+    }
+    public function harga_bb()
+    {
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->where('price_gudang!=0');
+        return $this->db->get()->result();
+    }
 }
 
 /* End of file mProduk.php */

@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-info elevation-4">
+<aside class="main-sidebar sidebar-light-success elevation-4">
 	<!-- Brand Logo -->
 	<a href="index3.html" class="brand-link">
 		<img src="<?= base_url('asset/AdminLTE/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -14,7 +14,8 @@
 				<img src="<?= base_url('asset/AdminLTE/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Supplier</a>
+				<a href="#" class="d-block">KONSUMEN</a>
+				<p>Selamat Datang</p>
 			</div>
 		</div>
 
@@ -25,39 +26,23 @@
                with font-awesome or any other icon font library -->
 
 				<li class="nav-item">
-					<a href="<?= base_url('Supplier/cDashboard') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cDashboard') {
+					<a href="<?= base_url('Konsumen/cHalamanUtama') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Konsumen' && $this->uri->segment(2) == 'cHalamanUtama') {
 																							echo 'active';
 																						}  ?>">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
-						<p>Dashboard</p>
+						<p>Katalog</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('Supplier/cProduk') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cProduk') {
-																						echo 'active';
-																					}  ?>">
-						<i class="nav-icon fas fa-tags"></i>
-						<p>Data Produk</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('Supplier/cSablon') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cSablon') {
-																						echo 'active';
-																					}  ?>">
-						<i class="nav-icon fas fa-tint"></i>
-						<p>Data Sablon</p>
-					</a>
-				</li>
-				<li class="nav-item">
-					<a href="<?= base_url('Supplier/cTransaksiSupplier') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cTransaksiSupplier') {
+					<a href="<?= base_url('Konsumen/cTransaksiKonsumen') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Konsumen' && $this->uri->segment(2) == 'cTransaksiKonsumen') {
 																									echo 'active';
 																								}  ?>">
-						<i class="nav-icon fas fa-shopping-cart"></i>
-						<p>Data Transaksi</p>
+						<i class="nav-icon fas fa-tags"></i>
+						<p>Transaksi Saya</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('cLoginSupplier/logout') ?>" class="nav-link">
+					<a href="<?= base_url('Konsumen/cAuth/logout') ?>" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>SignOut</p>
 					</a>

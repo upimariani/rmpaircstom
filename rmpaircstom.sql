@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Agu 2022 pada 14.31
+-- Waktu pembuatan: 14 Nov 2022 pada 19.19
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -29,9 +29,38 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `detail_invoicebb` (
   `id_detail_invoice` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
   `id_invoice` varchar(30) NOT NULL,
   `qty_bb` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_invoicebb`
+--
+
+INSERT INTO `detail_invoicebb` (`id_detail_invoice`, `id_produk`, `id_invoice`, `qty_bb`) VALUES
+(1, 1, '1', 10),
+(2, 3, '1', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `detail_invoicesb`
+--
+
+CREATE TABLE `detail_invoicesb` (
+  `id_detail_sb` int(11) NOT NULL,
+  `id_sablon` int(11) NOT NULL,
+  `id_invoice` int(11) NOT NULL,
+  `qty_sablon` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_invoicesb`
+--
+
+INSERT INTO `detail_invoicesb` (`id_detail_sb`, `id_sablon`, `id_invoice`, `qty_sablon`) VALUES
+(1, 1, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -41,10 +70,19 @@ CREATE TABLE `detail_invoicebb` (
 
 CREATE TABLE `detail_transaksi` (
   `id_detail` int(11) NOT NULL,
-  `id_transaksi` varchar(30) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `id_produk` int(11) NOT NULL,
   `gambar_sablon` text NOT NULL,
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_produk`, `gambar_sablon`, `qty`) VALUES
+(1, 1, 1, '0', 4),
+(2, 1, 2, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -53,14 +91,24 @@ CREATE TABLE `detail_transaksi` (
 --
 
 CREATE TABLE `invoice_bb` (
-  `id_invoice` varchar(30) NOT NULL,
+  `id_invoice` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tgl_invoice` varchar(15) NOT NULL,
   `total_invoice` varchar(15) NOT NULL,
   `status_pesan` int(11) NOT NULL,
-  `bukti_bayar` text NOT NULL
+  `bukti_bayar` text NOT NULL,
+  `type_transaksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `invoice_bb`
+--
+
+INSERT INTO `invoice_bb` (`id_invoice`, `id_supplier`, `id_user`, `tgl_invoice`, `total_invoice`, `status_pesan`, `bukti_bayar`, `type_transaksi`) VALUES
+(1, 1, 2, '2022-11-14', '665000', 2, '31084499740-bukti_transfer.jpg', 1),
+(2, 1, 2, '2022-11-14', '24000', 2, '31084499740-bukti_transfer.jpg', 2),
+(3, 1, 2, '2022-11-14', '24000', 2, '31084499740-bukti_transfer.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -77,6 +125,14 @@ CREATE TABLE `konsumen` (
   `password` varchar(125) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `konsumen`
+--
+
+INSERT INTO `konsumen` (`id_konsumen`, `nama_konsumen`, `alamat_konsumen`, `no_hp`, `username`, `password`) VALUES
+(1, 'coba', 'kuningan', '089876545654', 'coba', 'coba123'),
+(2, 'coba2', 'kuningan jabar', '089876567654', 'coba1234', 'coba1234');
+
 -- --------------------------------------------------------
 
 --
@@ -88,8 +144,22 @@ CREATE TABLE `produk` (
   `id_supplier` int(11) NOT NULL,
   `nama_produk` varchar(125) NOT NULL,
   `deskripsi` text NOT NULL,
-  `gambar` text NOT NULL
+  `gambar` text NOT NULL,
+  `size` varchar(5) NOT NULL,
+  `price_supp` varchar(15) NOT NULL,
+  `stok_supp` int(11) NOT NULL,
+  `price_gudang` varchar(15) NOT NULL DEFAULT '0',
+  `stok_gudang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `id_supplier`, `nama_produk`, `deskripsi`, `gambar`, `size`, `price_supp`, `stok_supp`, `price_gudang`, `stok_gudang`) VALUES
+(1, 1, 'Blue Street', '<p>Kaos Terdiri dari bahan <span style=\"background-color: rgb(255, 255, 0);\">katton 100 %</span> asli</p>', '2021_Hip_Hop_Streetwear_Harajuku_T_Shirt_Girl_Japanese_Kanji1.jpg', 'XL', '50000', 100, '70000', 10),
+(2, 1, 'Street Blue White', '<p>Kaos terbuat dari <span style=\"background-color: rgb(255, 255, 0);\"><font color=\"#c67ba5\">100% catton</font></span></p>', 'Camiseta_de_manga_corta_de_color_combinado___SHEIN….jpg', 'XL', '50000', 120, '60000', 5),
+(3, 1, 'Red Evil', 'Red Evil Cotton Premium', 'Monero___XMR_OSB_T-Shirt_Premium_-_Red___3XL.png', 'L', '55000', 100, '75000', 3);
 
 -- --------------------------------------------------------
 
@@ -101,24 +171,18 @@ CREATE TABLE `sablon` (
   `id_sablon` int(11) NOT NULL,
   `id_supplier` int(11) NOT NULL,
   `jenis_sablon` varchar(125) NOT NULL,
-  `harga` varchar(15) NOT NULL
+  `harga` varchar(15) NOT NULL,
+  `warna` varchar(50) NOT NULL,
+  `stok` int(11) NOT NULL,
+  `stok_gudang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Struktur dari tabel `size`
+-- Dumping data untuk tabel `sablon`
 --
 
-CREATE TABLE `size` (
-  `id_size` int(11) NOT NULL,
-  `id_produk` int(11) NOT NULL,
-  `nama_size` varchar(125) NOT NULL,
-  `price_supp` varchar(15) NOT NULL,
-  `stok_supp` int(11) NOT NULL,
-  `stok_gudang` int(11) NOT NULL,
-  `price_gudang` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `sablon` (`id_sablon`, `id_supplier`, `jenis_sablon`, `harga`, `warna`, `stok`, `stok_gudang`) VALUES
+(1, 1, 'TMt', '12000', 'merah', 12, 2);
 
 -- --------------------------------------------------------
 
@@ -136,20 +200,12 @@ CREATE TABLE `supplier` (
   `pass_supp` varchar(123) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Struktur dari tabel `tinta_sablon`
+-- Dumping data untuk tabel `supplier`
 --
 
-CREATE TABLE `tinta_sablon` (
-  `id_tinta` int(11) NOT NULL,
-  `id_sablon` int(11) NOT NULL,
-  `nama_merk` varchar(125) NOT NULL,
-  `warna` varchar(50) NOT NULL,
-  `stok_supp` int(11) NOT NULL,
-  `stok_gudang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `nama_toko`, `no_hp_supplier`, `username_supp`, `pass_supp`) VALUES
+(1, 'Supplier1', 'Pamijahan', 'Berkah Jaya', '0897656788765', 'supplier', 'supplier');
 
 -- --------------------------------------------------------
 
@@ -158,13 +214,20 @@ CREATE TABLE `tinta_sablon` (
 --
 
 CREATE TABLE `transaksi_cust` (
-  `id_transaksi` varchar(30) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
   `tgl_order` varchar(15) NOT NULL,
   `status_order` int(11) NOT NULL,
   `total_order` varchar(15) NOT NULL,
   `bukti_payment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `transaksi_cust`
+--
+
+INSERT INTO `transaksi_cust` (`id_transaksi`, `id_konsumen`, `tgl_order`, `status_order`, `total_order`, `bukti_payment`) VALUES
+(1, 2, '2022-11-14', 1, '340000', 'Screenshot_2022-06-27_120612.png');
 
 -- --------------------------------------------------------
 
@@ -183,6 +246,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id_user`, `nama_user`, `alamat_user`, `username`, `password`, `no_hp_user`, `tipe_user`) VALUES
+(1, 'Admin', 'Kuningan, Jawa Barat', 'admin', 'admin', '089876765676', 1),
+(2, 'Gudang', 'Gunungkeling, Kuningan Jawa Barat', 'gudang', 'gudang', '089876567546', 2);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -191,6 +262,12 @@ CREATE TABLE `user` (
 --
 ALTER TABLE `detail_invoicebb`
   ADD PRIMARY KEY (`id_detail_invoice`);
+
+--
+-- Indeks untuk tabel `detail_invoicesb`
+--
+ALTER TABLE `detail_invoicesb`
+  ADD PRIMARY KEY (`id_detail_sb`);
 
 --
 -- Indeks untuk tabel `detail_transaksi`
@@ -223,22 +300,10 @@ ALTER TABLE `sablon`
   ADD PRIMARY KEY (`id_sablon`);
 
 --
--- Indeks untuk tabel `size`
---
-ALTER TABLE `size`
-  ADD PRIMARY KEY (`id_size`);
-
---
 -- Indeks untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id_supplier`);
-
---
--- Indeks untuk tabel `tinta_sablon`
---
-ALTER TABLE `tinta_sablon`
-  ADD PRIMARY KEY (`id_tinta`);
 
 --
 -- Indeks untuk tabel `transaksi_cust`
@@ -260,55 +325,61 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `detail_invoicebb`
 --
 ALTER TABLE `detail_invoicebb`
-  MODIFY `id_detail_invoice` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `detail_invoicesb`
+--
+ALTER TABLE `detail_invoicesb`
+  MODIFY `id_detail_sb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `invoice_bb`
+--
+ALTER TABLE `invoice_bb`
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `sablon`
 --
 ALTER TABLE `sablon`
-  MODIFY `id_sablon` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `size`
---
-ALTER TABLE `size`
-  MODIFY `id_size` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sablon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tinta_sablon`
+-- AUTO_INCREMENT untuk tabel `transaksi_cust`
 --
-ALTER TABLE `tinta_sablon`
-  MODIFY `id_tinta` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `transaksi_cust`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
