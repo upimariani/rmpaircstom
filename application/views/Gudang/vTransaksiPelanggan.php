@@ -5,18 +5,22 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Produk</h1>
+                    <h1>Supplier</h1>
+
                 </div>
+
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Produk</li>
+                        <li class="breadcrumb-item active">DataTables</li>
                     </ol>
                 </div>
+
             </div>
+
         </div><!-- /.container-fluid -->
-        <a href="<?= base_url('Supplier/cProduk/insertProduk') ?>" class="btn btn-app">
-            <i class="fas fa-plus"></i> Tambah Produk
+        <a href="<?= base_url('Admin/cSupplier/createSupplier') ?>" class="btn btn-app">
+            <i class="fas fa-plus"></i> Tambah Supplier
         </a>
         <?php
         if ($this->session->userdata('success')) {
@@ -28,6 +32,7 @@
         <?php
         }
         ?>
+
     </section>
 
     <!-- Main content -->
@@ -37,7 +42,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Informasi Produk</h3>
+                            <h3 class="card-title">Informasi Supplier</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -45,57 +50,45 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Nama Produk</th>
-                                        <th>Deskripsi</th>
-                                        <th>Size</th>
-                                        <th>Harga</th>
-                                        <th>Stok</th>
+                                        <th>Nama Supplier</th>
+                                        <th>Alamat Supplier</th>
+                                        <th>Nama Toko</th>
+                                        <th>No Hp Supplier</th>
+                                        <th class="text-center">Akun Supplier</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($produk as $key => $value) {
+                                    foreach ($supplier as $key => $value) {
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td class="text-center"><img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>">
-                                            </td>
-                                            <td><?= $value->nama_produk ?></td>
-                                            <td><?= $value->deskripsi ?></td>
-                                            </td>
-                                            <td><?= $value->size ?></td>
-                                            <td>Rp. <?= number_format($value->price_supp)  ?></td>
-                                            <td><?= $value->stok_supp ?></td>
-                                            <td class="text-center">
-                                                <a href="<?= base_url('Supplier/cProduk/delete/' . $value->id_produk) ?>" class="btn btn-app">
-                                                    <i class="fas fa-trash"></i> Hapus Produk
-                                                </a>
-                                                <a href="<?= base_url('Supplier/cProduk/editProduk/' . $value->id_produk) ?>" class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> Edit Produk
-                                                </a>
-                                                <!-- <a href="<?= base_url('Supplier/cProduk/selectSize/' . $value->id_produk) ?>" class="btn btn-app">
-                                                    <i class="fas fa-info"></i> Detail Produk
-                                                </a> -->
-                                            </td>
+                                            <td><?= $value->nama_supplier ?></td>
+                                            <td><?= $value->alamat_supplier ?></td>
+                                            <td><?= $value->nama_toko ?></td>
+                                            <td><?= $value->no_hp_supplier ?></td>
+                                            <td class="text-center"><span class="badge badge-danger">Username : <?= $value->username_supp ?></span> <span class="badge badge-warning">Password : <?= $value->pass_supp ?></span></td>
+
+                                            <td class="text-center"> <a href="<?= base_url('Admin/cSupplier/delete/' . $value->id_supplier) ?>" class="btn btn-app">
+                                                    <i class="fas fa-trash"></i> Hapus Supplier
+                                                </a> <a href="<?= base_url('Admin/cSupplier/edit/' . $value->id_supplier) ?>" class="btn btn-app">
+                                                    <i class="fas fa-edit"></i> Edit Supplier
+                                                </a></td>
                                         </tr>
                                     <?php
                                     }
                                     ?>
-
-
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
-                                        <th>Nama Produk</th>
-                                        <th>Deskripsi</th>
-                                        <th>Size</th>
-                                        <th>Harga</th>
-                                        <th>Stok</th>
+                                        <th>Nama Supplier</th>
+                                        <th>Alamat Supplier</th>
+                                        <th>Nama Toko</th>
+                                        <th>No Hp Supplier</th>
+                                        <th class="text-center">Akun Supplier</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>

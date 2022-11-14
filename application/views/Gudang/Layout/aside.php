@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-light-warning elevation-4">
+<aside class="main-sidebar sidebar-light-danger elevation-4">
 	<!-- Brand Logo -->
 	<a href="index3.html" class="brand-link">
 		<img src="<?= base_url('asset/AdminLTE/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -14,7 +14,7 @@
 				<img src="<?= base_url('asset/AdminLTE/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
-				<a href="#" class="d-block">Admin</a>
+				<a href="#" class="d-block">Gudang</a>
 			</div>
 		</div>
 
@@ -25,7 +25,7 @@
                with font-awesome or any other icon font library -->
 
 				<li class="nav-item">
-					<a href="<?= base_url('Admin/cDashboard') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cDashboard') {
+					<a href="<?= base_url('Gudang/cDashboard') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cDashboard') {
 																						echo 'active';
 																					}  ?>">
 						<i class="nav-icon fas fa-tachometer-alt"></i>
@@ -33,19 +33,19 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('Admin/cUser') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cUser') {
-																					echo 'active';
-																				}  ?>">
-						<i class="nav-icon fas fa-user-tie"></i>
-						<p>Data User</p>
+					<a href="<?= base_url('Gudang/cTransaksiBB') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksiBB') {
+																							echo 'active';
+																						}  ?>">
+						<i class="nav-icon fas fa-barcode"></i>
+						<p>Transaksi Bahan Baku</p>
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="<?= base_url('Admin/cSupplier') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cSupplier') {
-																						echo 'active';
-																					}  ?>">
-						<i class="nav-icon fas fa-user-lock"></i>
-						<p>Data Supplier</p>
+					<a href="<?= base_url('Gudang/cTransaksiPelanggan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksiPelanggan') {
+																								echo 'active';
+																							}  ?>">
+						<i class="nav-icon fas fa-shopping-cart"></i>
+						<p>Transaksi Pelanggan</p>
 					</a>
 				</li>
 				<li class="nav-item">

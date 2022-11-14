@@ -11,6 +11,8 @@ class mProduk extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('produk');
+        $this->db->where('id_supplier', $this->session->userdata('id'));
+
         return $this->db->get()->result();
     }
     public function edit($id)
@@ -45,6 +47,24 @@ class mProduk extends CI_Model
     public function insertSize($data)
     {
         $this->db->insert('size', $data);
+    }
+    public function editSize($id)
+    {
+        $this->db->select('*');
+        $this->db->from('size');
+        $this->db->join('produk', 'size.id_produk = produk.id_produk', 'left');
+        $this->db->where('size.id_size', $id);
+        return $this->db->get()->row();
+    }
+    public function updateSize($id, $data)
+    {
+        $this->db->where('id_size', $id);
+        $this->db->update('size', $data);
+    }
+    public function deleteSize($id)
+    {
+        $this->db->where('id_size', $id);
+        $this->db->delete('size');
     }
 }
 

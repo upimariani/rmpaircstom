@@ -25,6 +25,9 @@ class cProduk extends CI_Controller
     {
         $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi Produk', 'required');
+        $this->form_validation->set_rules('size', 'Size Produk', 'required');
+        $this->form_validation->set_rules('harga', 'Harga Produk', 'required');
+        $this->form_validation->set_rules('stok', 'Stok Produk', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('Supplier/Layout/head');
@@ -47,12 +50,16 @@ class cProduk extends CI_Controller
             } else {
                 $upload_data = $this->upload->data();
                 $data = array(
+                    'id_supplier' => $this->session->userdata('id'),
                     'nama_produk' => $this->input->post('nama'),
                     'deskripsi' => $this->input->post('deskripsi'),
-                    'gambar' => $upload_data['file_name']
+                    'gambar' => $upload_data['file_name'],
+                    'size' => $this->input->post('size'),
+                    'price_supp' => $this->input->post('harga'),
+                    'stok_supp' => $this->input->post('stok'),
+
                 );
                 $this->mProduk->insertProduk($data);
-
                 $this->session->set_flashdata('success', 'Data Produk Berhasil Disimpan!');
                 redirect('Supplier/cProduk');
             }
@@ -86,7 +93,10 @@ class cProduk extends CI_Controller
                 $data = array(
                     'nama_produk' => $this->input->post('nama'),
                     'deskripsi' => $this->input->post('deskripsi'),
-                    'gambar' => $upload_data['file_name']
+                    'gambar' => $upload_data['file_name'],
+                    'size' => $this->input->post('size'),
+                    'price_supp' => $this->input->post('harga'),
+                    'stok_supp' => $this->input->post('stok')
                 );
                 $this->mProduk->updateProduk($id, $data);
                 $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
@@ -94,7 +104,10 @@ class cProduk extends CI_Controller
             } //tanpa ganti gambar
             $data = array(
                 'nama_produk' => $this->input->post('nama'),
-                'deskripsi' => $this->input->post('deskripsi')
+                'deskripsi' => $this->input->post('deskripsi'),
+                'size' => $this->input->post('size'),
+                'price_supp' => $this->input->post('harga'),
+                'stok_supp' => $this->input->post('stok')
             );
             $this->mProduk->updateProduk($id, $data);
             $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
@@ -153,6 +166,38 @@ class cProduk extends CI_Controller
             $this->session->set_flashdata('success', 'Data Size Produk Berhasil Ditambahkan !!!');
             redirect('Supplier/cProduk/selectSize/' . $id);
         }
+    }
+    public function editSize($id)
+    {
+        $this->form_validation->set_rules('nama', 'Nama Size', 'required');
+        $this->form_validation->set_rules('harga', 'Harga Size', 'required');
+        $this->form_validation->set_rules('stok', 'Stok Produk Size', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'size' => $this->mProduk->editSize($id)
+            );
+            $this->load->view('Supplier/Layout/head');
+            $this->load->view('Supplier/Layout/aside');
+            $this->load->view('Supplier/Produk/vUpdateSize', $data);
+            $this->load->view('Supplier/Layout/footer');
+        } else {
+            $id_produk = $this->input->post('id_produk');
+            $data = array(
+                'nama_size' => $this->input->post('nama'),
+                'price_supp' => $this->input->post('harga'),
+                'stok_supp' => $this->input->post('stok'),
+            );
+            $this->mProduk->updateSize($id, $data);
+            $this->session->set_flashdata('success', 'Data Size Produk Berhasil Diperbaharui !!!');
+            redirect('Supplier/cProduk/selectSize/' . $id_produk);
+        }
+    }
+    public function deleteSize($id, $id_produk)
+    {
+        $this->mProduk->deleteSize($id);
+        $this->session->set_flashdata('success', 'Data Size Produk Berhasil Dihapus !!!');
+        redirect('Supplier/cProduk/selectSize/' . $id_produk);
     }
 }
 

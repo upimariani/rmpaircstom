@@ -47,6 +47,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nama Size</label>
+                                    <input type="text" value="<?= $produk->size ?>" name="size" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Size">
+                                    <?= form_error('size', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Harga Produk</label>
+                                    <input type="number" value="<?= $produk->price_supp ?>" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga Produk">
+                                    <?= form_error('harga', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Stok Produk</label>
+                                    <input type="text" value="<?= $produk->stok_supp ?>" name="stok" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Stok Produk">
+                                    <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Gambar</label>
                                 <img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $produk->gambar) ?>">

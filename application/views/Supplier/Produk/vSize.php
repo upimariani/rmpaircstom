@@ -61,7 +61,7 @@
                                             <td><?= $value->nama_size ?></td>
                                             <td>Rp. <?= number_format($value->price_supp)  ?></td>
                                             <td><?= $value->stok_supp ?></td>
-                                            <td class="text-center"> <a href="<?= base_url('Supplier/cProduk/deleteSize/' . $value->id_size) ?>" class="btn btn-app">
+                                            <td class="text-center"> <a href="<?= base_url('Supplier/cProduk/deleteSize/' . $value->id_size . '/' . $value->id_produk) ?>" class="btn btn-app">
                                                     <i class="fas fa-trash"></i> Hapus Size
                                                 </a>
                                                 <a href="<?= base_url('Supplier/cProduk/editSize/' . $value->id_size) ?>" class="btn btn-app">

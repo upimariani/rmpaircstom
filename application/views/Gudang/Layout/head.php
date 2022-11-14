@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ADMIN</title>
+	<title>GUDANG</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Font Awesome -->
@@ -36,7 +36,7 @@
 	<div class="wrapper">
 
 		<!-- Navbar -->
-		<nav class="main-header navbar navbar-expand navbar-warning navbar-light">
+		<nav class="main-header navbar navbar-expand navbar-danger navbar-light">
 			<!-- Left navbar links -->
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -44,8 +44,6 @@
 				</li>
 
 			</ul>
-
-			<!-- SEARCH FORM -->
 
 
 		</nav>

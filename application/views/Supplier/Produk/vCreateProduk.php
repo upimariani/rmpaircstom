@@ -36,7 +36,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nama Produk</label>
-                                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama user">
+                                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama Produk">
                                         <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
@@ -47,9 +47,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Gambar</label>
-                                <input type="file" name="gambar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan alamat" required>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nama Size</label>
+                                    <input type="text" name="size" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Size">
+                                    <?= form_error('size', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Harga Produk</label>
+                                    <input type="number" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga Produk">
+                                    <?= form_error('harga', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Stok Produk</label>
+                                    <input type="text" name="stok" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Stok Produk">
+                                    <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Gambar</label>
+                                    <input type="file" name="gambar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan alamat" required>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
