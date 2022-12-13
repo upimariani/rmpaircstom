@@ -76,6 +76,21 @@
   </script>
   <script>
     console.log = function() {}
+    $("#produk_a").on('change', function() {
+
+      $(".nama").html($(this).find(':selected').attr('data-nama'));
+      $(".nama").val($(this).find(':selected').attr('data-nama'));
+
+      $(".harga").html($(this).find(':selected').attr('data-harga'));
+      $(".harga").val($(this).find(':selected').attr('data-harga'));
+
+      $(".stok").html($(this).find(':selected').attr('data-stok'));
+      $(".stok").val($(this).find(':selected').attr('data-stok'));
+
+    });
+  </script>
+  <script>
+    console.log = function() {}
     $("#sablon").on('change', function() {
 
       $(".jenis").html($(this).find(':selected').attr('data-jenis'));
@@ -113,6 +128,7 @@
 
     });
   </script>
+
   </body>
 
   </html>

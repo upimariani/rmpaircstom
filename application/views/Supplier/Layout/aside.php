@@ -48,12 +48,15 @@
 						<p>Data Sablon</p>
 					</a>
 				</li>
+				<?php
+				$notifikasi = $this->db->query("SELECT COUNT(id_invoice) as notifkasi FROM `invoice_bb` WHERE status_pesan=1;")->row();
+				?>
 				<li class="nav-item">
 					<a href="<?= base_url('Supplier/cTransaksiSupplier') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Supplier' && $this->uri->segment(2) == 'cTransaksiSupplier') {
 																									echo 'active';
 																								}  ?>">
 						<i class="nav-icon fas fa-shopping-cart"></i>
-						<p>Data Transaksi</p>
+						<p>Data Transaksi</p><span class="badge badge-danger"><?= $notifikasi->notifkasi ?></span>
 					</a>
 				</li>
 				<li class="nav-item">

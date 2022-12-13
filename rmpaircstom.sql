@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Nov 2022 pada 19.19
+-- Waktu pembuatan: 13 Des 2022 pada 23.25
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -82,7 +82,12 @@ CREATE TABLE `detail_transaksi` (
 
 INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_produk`, `gambar_sablon`, `qty`) VALUES
 (1, 1, 1, '0', 4),
-(2, 1, 2, '0', 1);
+(2, 1, 2, '0', 1),
+(3, 2, 1, '0', 1),
+(4, 2, 3, '0', 1),
+(5, 3, 1, '0', 2),
+(6, 3, 3, '0', 1),
+(7, 4, 2, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -106,7 +111,7 @@ CREATE TABLE `invoice_bb` (
 --
 
 INSERT INTO `invoice_bb` (`id_invoice`, `id_supplier`, `id_user`, `tgl_invoice`, `total_invoice`, `status_pesan`, `bukti_bayar`, `type_transaksi`) VALUES
-(1, 1, 2, '2022-11-14', '665000', 2, '31084499740-bukti_transfer.jpg', 1),
+(1, 1, 2, '2022-11-14', '665000', 1, '31084499740-bukti_transfer.jpg', 1),
 (2, 1, 2, '2022-11-14', '24000', 2, '31084499740-bukti_transfer.jpg', 2),
 (3, 1, 2, '2022-11-14', '24000', 2, '31084499740-bukti_transfer.jpg', 2);
 
@@ -159,7 +164,7 @@ CREATE TABLE `produk` (
 INSERT INTO `produk` (`id_produk`, `id_supplier`, `nama_produk`, `deskripsi`, `gambar`, `size`, `price_supp`, `stok_supp`, `price_gudang`, `stok_gudang`) VALUES
 (1, 1, 'Blue Street', '<p>Kaos Terdiri dari bahan <span style=\"background-color: rgb(255, 255, 0);\">katton 100 %</span> asli</p>', '2021_Hip_Hop_Streetwear_Harajuku_T_Shirt_Girl_Japanese_Kanji1.jpg', 'XL', '50000', 100, '70000', 10),
 (2, 1, 'Street Blue White', '<p>Kaos terbuat dari <span style=\"background-color: rgb(255, 255, 0);\"><font color=\"#c67ba5\">100% catton</font></span></p>', 'Camiseta_de_manga_corta_de_color_combinado___SHEIN….jpg', 'XL', '50000', 120, '60000', 5),
-(3, 1, 'Red Evil', 'Red Evil Cotton Premium', 'Monero___XMR_OSB_T-Shirt_Premium_-_Red___3XL.png', 'L', '55000', 100, '75000', 3);
+(3, 1, 'Red Evil', 'Red Evil Cotton Premium', 'Monero___XMR_OSB_T-Shirt_Premium_-_Red___3XL.png', 'L', '55000', 100, '75000', 2);
 
 -- --------------------------------------------------------
 
@@ -205,7 +210,7 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `nama_toko`, `no_hp_supplier`, `username_supp`, `pass_supp`) VALUES
-(1, 'Supplier1', 'Pamijahan', 'Berkah Jaya', '0897656788765', 'supplier', 'supplier');
+(1, 'Ahmad', 'Gunungkeling, Kuningan Jawa Barat', 'Berkah Jaya', '0875698745633', 'supplier', 'supplier');
 
 -- --------------------------------------------------------
 
@@ -219,15 +224,19 @@ CREATE TABLE `transaksi_cust` (
   `tgl_order` varchar(15) NOT NULL,
   `status_order` int(11) NOT NULL,
   `total_order` varchar(15) NOT NULL,
-  `bukti_payment` text NOT NULL
+  `bukti_payment` text NOT NULL,
+  `type_transaksi` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `transaksi_cust`
 --
 
-INSERT INTO `transaksi_cust` (`id_transaksi`, `id_konsumen`, `tgl_order`, `status_order`, `total_order`, `bukti_payment`) VALUES
-(1, 2, '2022-11-14', 1, '340000', 'Screenshot_2022-06-27_120612.png');
+INSERT INTO `transaksi_cust` (`id_transaksi`, `id_konsumen`, `tgl_order`, `status_order`, `total_order`, `bukti_payment`, `type_transaksi`) VALUES
+(1, 2, '2022-11-14', 2, '340000', 'Screenshot_2022-06-27_120612.png', 1),
+(2, 1, '2022-11-27', 1, '145000', 'Ini-Dia-Bukti-Transfer-Mandiri-Dari-ATM-mBanking-dan-Internet-Banking-Mandiri-1.jpg', 1),
+(3, 0, '2022-12-13', 2, '215000', '1', 2),
+(4, 0, '2022-12-13', 2, '60000', '1', 2);
 
 -- --------------------------------------------------------
 
@@ -337,7 +346,7 @@ ALTER TABLE `detail_invoicesb`
 -- AUTO_INCREMENT untuk tabel `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `invoice_bb`
@@ -367,13 +376,13 @@ ALTER TABLE `sablon`
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi_cust`
 --
 ALTER TABLE `transaksi_cust`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

@@ -49,6 +49,14 @@
 					</a>
 				</li>
 				<li class="nav-item">
+					<a href="<?= base_url('Admin/cLaporan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Admin' && $this->uri->segment(2) == 'cLaporan') {
+																					echo 'active';
+																				}  ?>">
+						<i class="nav-icon fas fa-book"></i>
+						<p>Laporan Transaksi</p>
+					</a>
+				</li>
+				<li class="nav-item">
 					<a href="<?= base_url('cLogin/logout') ?>" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>SignOut</p>

@@ -48,12 +48,24 @@
 						<p>Transaksi Bahan Baku</p>
 					</a>
 				</li>
+				<?php
+				$query = $this->db->query("SELECT COUNT(id_transaksi) as jml FROM `transaksi_cust` WHERE status_order=1;")->row();
+
+				?>
 				<li class="nav-item">
 					<a href="<?= base_url('Gudang/cTransaksiPelanggan') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksiPelanggan') {
 																								echo 'active';
 																							}  ?>">
 						<i class="nav-icon fas fa-shopping-cart"></i>
-						<p>Transaksi Pelanggan</p>
+						<p>Transaksi Pelanggan </p><span class="badge badge-success"><?= $query->jml ?></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="<?= base_url('Gudang/cTransaksiLangsung') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cTransaksiLangsung') {
+																								echo 'active';
+																							}  ?>">
+						<i class="nav-icon fas fa-map"></i>
+						<p>Transaksi Langsung </p>
 					</a>
 				</li>
 				<li class="nav-item">
