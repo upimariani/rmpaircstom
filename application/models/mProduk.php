@@ -5,12 +5,12 @@ class mProduk extends CI_Model
 {
     public function insertProduk($data)
     {
-        $this->db->insert('produk', $data);
+        $this->db->insert('bahan_baku', $data);
     }
     public function selectProduk()
     {
         $this->db->select('*');
-        $this->db->from('produk');
+        $this->db->from('bahan_baku');
         $this->db->where('id_supplier', $this->session->userdata('id'));
 
         return $this->db->get()->result();
@@ -18,22 +18,19 @@ class mProduk extends CI_Model
     public function edit($id)
     {
         $this->db->select('*');
-        $this->db->from('produk');
-        $this->db->where('id_produk', $id);
+        $this->db->from('bahan_baku');
+        $this->db->where('id_bb', $id);
         return $this->db->get()->row();
     }
-    public function updateProduk($id, $data)
+    public function updatebahan_baku($id, $data)
     {
-        $this->db->where('id_produk', $id);
-        $this->db->update('produk', $data);
+        $this->db->where('id_bb', $id);
+        $this->db->update('bahan_baku', $data);
     }
     public function delete($id)
     {
-        $this->db->where('id_produk', $id);
-        $this->db->delete('produk');
-
-        $this->db->where('id_produk', $id);
-        $this->db->delete('size');
+        $this->db->where('id_bb', $id);
+        $this->db->delete('bahan_baku');
     }
 
 
@@ -73,7 +70,6 @@ class mProduk extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('produk');
-        $this->db->where('price_gudang=0');
 
         return $this->db->get()->result();
     }

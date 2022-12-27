@@ -24,7 +24,7 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
-                    <div class="card card-primary">
+                    <div class="card card-danger">
                         <div class="card-header">
                             <h3 class="card-title">Tambah Data Produk</h3>
                         </div>
@@ -48,7 +48,7 @@
                                                         <?php
                                                         foreach ($jenis_produk as $key => $value) {
                                                         ?>
-                                                            <option data-nama="<?= $value->nama_produk ?>" data-size="<?= $value->size ?>" data-harga="<?= $value->price_supp ?>" data-stok="<?= $value->stok_supp ?>" value="<?= $value->id_produk ?>"><?= $value->nama_produk ?></option>
+                                                            <option data-nama="<?= $value->nama_bb ?>" data-size="<?= $value->size ?>" data-harga="<?= $value->harga_bb ?>" data-stok="<?= $value->stok_bb ?>" value="<?= $value->id_bb ?>"><?= $value->nama_bb ?></option>
                                                         <?php
                                                         }
                                                         ?>

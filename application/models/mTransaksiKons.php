@@ -8,6 +8,8 @@ class mTransaksiKons extends CI_Model
         $this->db->select('*');
         $this->db->from('transaksi_cust');
         $this->db->join('konsumen', 'konsumen.id_konsumen = transaksi_cust.id_konsumen', 'left');
+        $this->db->where('type_transaksi=1');
+
         return $this->db->get()->result();
     }
     public function konfirmasi($id, $data)

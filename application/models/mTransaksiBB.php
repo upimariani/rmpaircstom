@@ -14,7 +14,7 @@ class mTransaksiBB extends CI_Model
     public function produk($id)
     {
         $this->db->select('*');
-        $this->db->from('produk');
+        $this->db->from('bahan_baku');
         $this->db->where('id_supplier', $id);
         return $this->db->get()->result();
     }

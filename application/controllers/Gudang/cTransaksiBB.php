@@ -115,10 +115,20 @@ class cTransaksiBB extends CI_Controller
 
             $max = $this->mTransaksiBB->max_id_transaksi();
             foreach ($this->cart->contents() as $key => $value) {
+                //mengurangi stok bahan baku produk
+                $id = $value['id'];
+                $stok = $value['stok'] - $value['qty'];
+                $stok_akhir = array(
+                    'stok_bb' => $stok
+                );
+                $this->db->where('id_bb', $id);
+                $this->db->update('bahan_baku', $stok_akhir);
+
                 $data_detail = array(
-                    'id_produk' => $value['id'],
+                    'id_bb' => $value['id'],
                     'id_invoice' => $max->max,
-                    'qty_bb' => $value['qty']
+                    'qty_bb' => $value['qty'],
+                    'sisa_bb' => $value['qty']
                 );
                 $this->mTransaksiBB->insert_detail_produk($data_detail);
             }
@@ -142,9 +152,16 @@ class cTransaksiBB extends CI_Controller
                 $data_detail = array(
                     'id_sablon' => $value['id'],
                     'id_invoice' => $max->max,
-                    'qty_sablon' => $value['qty']
+                    'qty_sablon' => $value['qty'],
+                    'sisa_sablon' => $value['qty']
                 );
                 $this->mTransaksiBB->insert_detail_sablon($data_detail);
+                //mengurangi stok sablon
+                $stok_akhir = array(
+                    'stok' => $value['stok'] - $value['qty']
+                );
+                $this->db->where('id_sablon', $value['id']);
+                $this->db->update('sablon', $stok_akhir);
             }
         }
         $this->cart->destroy();

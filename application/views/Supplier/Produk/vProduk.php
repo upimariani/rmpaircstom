@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Produk</h1>
+                    <h1>Bahan Baku Produk</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -16,7 +16,7 @@
             </div>
         </div><!-- /.container-fluid -->
         <a href="<?= base_url('Supplier/cProduk/insertProduk') ?>" class="btn btn-app">
-            <i class="fas fa-plus"></i> Tambah Produk
+            <i class="fas fa-plus"></i> Tambah Bahan Baku Produk
         </a>
         <?php
         if ($this->session->userdata('success')) {
@@ -45,7 +45,6 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
                                         <th>Nama Produk</th>
                                         <th>Deskripsi</th>
                                         <th>Size</th>
@@ -61,24 +60,20 @@
                                     ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td class="text-center"><img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>">
-                                            </td>
-                                            <td><?= $value->nama_produk ?></td>
-                                            <td><?= $value->deskripsi ?></td>
+                                            <td><?= $value->nama_bb ?></td>
+                                            <td><?= $value->keterangan ?></td>
                                             </td>
                                             <td><?= $value->size ?></td>
-                                            <td>Rp. <?= number_format($value->price_supp)  ?></td>
-                                            <td><?= $value->stok_supp ?></td>
+                                            <td>Rp. <?= number_format($value->harga_bb)  ?></td>
+                                            <td><?= $value->stok_bb ?></td>
                                             <td class="text-center">
-                                                <a href="<?= base_url('Supplier/cProduk/delete/' . $value->id_produk) ?>" class="btn btn-app">
+                                                <a href="<?= base_url('Supplier/cProduk/delete/' . $value->id_bb) ?>" class="btn btn-app">
                                                     <i class="fas fa-trash"></i> Hapus Produk
                                                 </a>
-                                                <a href="<?= base_url('Supplier/cProduk/editProduk/' . $value->id_produk) ?>" class="btn btn-app">
+                                                <a href="<?= base_url('Supplier/cProduk/editProduk/' . $value->id_bb) ?>" class="btn btn-app">
                                                     <i class="fas fa-edit"></i> Edit Produk
                                                 </a>
-                                                <!-- <a href="<?= base_url('Supplier/cProduk/selectSize/' . $value->id_produk) ?>" class="btn btn-app">
-                                                    <i class="fas fa-info"></i> Detail Produk
-                                                </a> -->
+
                                             </td>
                                         </tr>
                                     <?php
@@ -90,7 +85,6 @@
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar</th>
                                         <th>Nama Produk</th>
                                         <th>Deskripsi</th>
                                         <th>Size</th>

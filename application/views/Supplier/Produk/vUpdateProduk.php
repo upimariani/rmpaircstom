@@ -24,26 +24,27 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
-                    <div class="card card-primary">
+                    <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Edit Data Produk</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <?php echo form_open_multipart('Supplier/cProduk/editProduk/' . $produk->id_produk); ?>
+                        <?php echo form_open_multipart('Supplier/cProduk/editProduk/' . $produk->id_bb); ?>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nama Produk</label>
-                                        <input type="text" value="<?= $produk->nama_produk ?>" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama user">
+                                        <input type="text" value="<?= $produk->nama_bb ?>" name="nama" class="form-control" id="exampleInputEmail1" placeholder="Masukkan nama user">
                                         <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label for="exampleInputEmail1">Deskripsi Produk</label>
-                                        <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $produk->deskripsi ?></textarea>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Keterangan Produk</label>
+                                        <input type="text" name="keterangan" value="<?= $produk->keterangan ?>" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Keterangan Produk">
+                                        <?= form_error('keterangan', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                             </div>
@@ -57,22 +58,18 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Harga Produk</label>
-                                    <input type="number" value="<?= $produk->price_supp ?>" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga Produk">
+                                    <input type="number" value="<?= $produk->harga_bb ?>" name="harga" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Harga Produk">
                                     <?= form_error('harga', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Stok Produk</label>
-                                    <input type="text" value="<?= $produk->stok_supp ?>" name="stok" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Stok Produk">
+                                    <input type="text" value="<?= $produk->stok_bb ?>" name="stok" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Stok Produk">
                                     <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Gambar</label>
-                                <img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $produk->gambar) ?>">
-                                <input type="file" name="gambar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan alamat">
-                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

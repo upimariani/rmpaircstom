@@ -48,6 +48,14 @@
 						<p>Transaksi Bahan Baku</p>
 					</a>
 				</li>
+				<li class="nav-item">
+					<a href="<?= base_url('Gudang/cManufacturing') ?>" class="nav-link <?php if ($this->uri->segment(1) == 'Gudang' && $this->uri->segment(2) == 'cManufacturing') {
+																							echo 'active';
+																						}  ?>">
+						<i class="nav-icon fas fa-undo"></i>
+						<p>Manufacturing</p>
+					</a>
+				</li>
 				<?php
 				$query = $this->db->query("SELECT COUNT(id_transaksi) as jml FROM `transaksi_cust` WHERE status_order=1;")->row();
 

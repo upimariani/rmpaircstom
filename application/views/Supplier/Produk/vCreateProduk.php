@@ -24,7 +24,7 @@
                 <!-- left column -->
                 <div class="col-md-6">
                     <!-- general form elements -->
-                    <div class="card card-primary">
+                    <div class="card card-info">
                         <div class="card-header">
                             <h3 class="card-title">Tambah Data Produk</h3>
                         </div>
@@ -40,10 +40,17 @@
                                         <?= form_error('nama', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
-                                <div class="col-lg-12">
+                                <!-- <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1">Deskripsi Produk</label>
                                         <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    </div>
+                                </div> -->
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Keterangan Produk</label>
+                                        <input type="text" name="keterangan" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Keterangan Produk">
+                                        <?= form_error('keterangan', '<small class="text-danger">', '</small>') ?>
                                     </div>
                                 </div>
                             </div>
@@ -69,12 +76,7 @@
                                     <?= form_error('stok', '<small class="text-danger">', '</small>') ?>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Gambar</label>
-                                    <input type="file" name="gambar" class="form-control" id="exampleInputEmail1" placeholder="Masukkan alamat" required>
-                                </div>
-                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">

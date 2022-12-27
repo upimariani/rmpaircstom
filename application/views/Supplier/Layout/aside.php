@@ -37,7 +37,7 @@
 																						echo 'active';
 																					}  ?>">
 						<i class="nav-icon fas fa-tags"></i>
-						<p>Data Produk</p>
+						<p>Data Bahan Baku Produk</p>
 					</a>
 				</li>
 				<li class="nav-item">

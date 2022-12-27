@@ -5,22 +5,25 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Informasi Bahan Baku Produk</h1>
+                    <h1>Informasi Produk Jadi</h1>
 
                 </div>
 
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Bahan Baku</li>
+                        <li class="breadcrumb-item active">Produk Jadi</li>
                     </ol>
                 </div>
 
             </div>
 
         </div><!-- /.container-fluid -->
-        <a href="#" class="btn btn-app" data-toggle="modal" data-target="#small-modal" type="button">
-            <i class="fas fa-plus"></i> Tambah Informasi Harga
+        <a href="#" class="btn btn-app" data-toggle="modal" data-target="#desain_baru" type="button">
+            <i class="fas fa-plus"></i> Desain Baru
+        </a>
+        <a href="#" class="btn btn-app" data-toggle="modal" data-target="#manufacturing" type="button">
+            <i class="fas fa-plus"></i> Manufacturing
         </a>
         <?php
         if ($this->session->userdata('success')) {
@@ -52,7 +55,6 @@
                                         <th>No</th>
                                         <th>Gambar Produk</th>
                                         <th>Nama Produk</th>
-                                        <th>Harga Supplier</th>
                                         <th>Harga Gudang</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -66,7 +68,6 @@
                                             <td><?= $no++ ?></td>
                                             <td><img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td>
                                             <td><?= $value->nama_produk ?></td>
-                                            <td>Rp. <?= number_format($value->price_supp)  ?></td>
                                             <td>Rp. <?= number_format($value->price_gudang)  ?></td>
                                             <td class="text-center"> <a href="#" class="btn btn-app" data-toggle="modal" data-target="#edit<?= $value->id_produk ?>" type="button">
                                                     <i class="fas fa-edit"></i> Edit
@@ -81,7 +82,6 @@
                                         <th>No</th>
                                         <th>Gambar Produk</th>
                                         <th>Nama Produk</th>
-                                        <th>Harga Supplier</th>
                                         <th>Harga Gudang</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -104,18 +104,72 @@
 
 
 <form action="<?= base_url('Gudang/cBahanBaku/create') ?>" method="POST">
-    <div class="modal fade" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="desain_baru" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Pilih Produk</h4>
+                    <h4 class="modal-title" id="myLargeModalLabel">Desain Baru</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-                    <p>Silahkan Untuk Memilih Produk Untuk menambahkan Harga</p>
+                    <p>Silahkan untuk membuat Desain Baru</p>
                     <div class="row">
                         <div class="col-lg-12">
-                            <label>Nama Produk</label>
+                            <div class="col-lg-12 mt-2">
+                                <label>Nama Produk</label>
+                                <input type="text" name="harga" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 mt-2">
+                                <label for="exampleInputEmail1">Deskripsi Produk</label>
+                                <textarea class="textarea" name="deskripsi" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-2">
+                            <label>Harga Gudang</label>
+                            <input type="number" name="harga" class="form-control" required>
+                        </div>
+                        <div class="col-lg-12 mt-2">
+                            <label>Gambar Produk</label>
+                            <input type="file" name="harga" class="form-control" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form action="<?= base_url('Gudang/cBahanBaku/create') ?>" method="POST">
+    <div class="modal fade" id="manufacturing" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Manufacturing</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p>Silahkan membuat proses Manufacturing</p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Nama Bahan Baku Produk</label>
+                            <select name="produk" class="form-control" required>
+                                <option value="" selected="">Choose...</option>
+                                <?php
+                                foreach ($produk as $key => $value) {
+                                ?>
+                                    <option value="<?= $value->id_produk ?>"><?= $value->nama_produk ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <label>Nama Bahan Baku Sablon</label>
                             <select name="produk" class="form-control" required>
                                 <option value="" selected="">Choose...</option>
                                 <?php
@@ -142,7 +196,6 @@
         </div>
     </div>
 </form>
-
 <?php
 foreach ($harga_produk as $key => $item) {
 ?>

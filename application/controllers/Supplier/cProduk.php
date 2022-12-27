@@ -24,7 +24,7 @@ class cProduk extends CI_Controller
     public function insertProduk()
     {
         $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Produk', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan Produk', 'required');
         $this->form_validation->set_rules('size', 'Size Produk', 'required');
         $this->form_validation->set_rules('harga', 'Harga Produk', 'required');
         $this->form_validation->set_rules('stok', 'Stok Produk', 'required');
@@ -35,91 +35,98 @@ class cProduk extends CI_Controller
             $this->load->view('Supplier/Produk/vCreateProduk');
             $this->load->view('Supplier/Layout/footer');
         } else {
-            $config['upload_path']          = './asset/foto-produk';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 5000;
+            // $config['upload_path']          = './asset/foto-produk';
+            // $config['allowed_types']        = 'gif|jpg|png';
+            // $config['max_size']             = 5000;
 
-            $this->load->library('upload', $config);
+            // $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('gambar')) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('Supplier/Layout/head');
-                $this->load->view('Supplier/Layout/aside');
-                $this->load->view('Supplier/Produk/vCreateProduk', $error);
-                $this->load->view('Supplier/Layout/footer');
-            } else {
-                $upload_data = $this->upload->data();
-                $data = array(
-                    'id_supplier' => $this->session->userdata('id'),
-                    'nama_produk' => $this->input->post('nama'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'gambar' => $upload_data['file_name'],
-                    'size' => $this->input->post('size'),
-                    'price_supp' => $this->input->post('harga'),
-                    'stok_supp' => $this->input->post('stok'),
+            // if (!$this->upload->do_upload('gambar')) {
+            //     $error = array('error' => $this->upload->display_errors());
+            //     $this->load->view('Supplier/Layout/head');
+            //     $this->load->view('Supplier/Layout/aside');
+            //     $this->load->view('Supplier/Produk/vCreateProduk', $error);
+            //     $this->load->view('Supplier/Layout/footer');
+            // } else {
+            //     $upload_data = $this->upload->data();
+            $data = array(
+                'id_supplier' => $this->session->userdata('id'),
+                'nama_bb' => $this->input->post('nama'),
+                'keterangan' => $this->input->post('keterangan'),
+                // 'gambar' => $upload_data['file_name'],
+                'size' => $this->input->post('size'),
+                'harga_bb' => $this->input->post('harga'),
+                'stok_bb' => $this->input->post('stok'),
 
-                );
-                $this->mProduk->insertProduk($data);
-                $this->session->set_flashdata('success', 'Data Produk Berhasil Disimpan!');
-                redirect('Supplier/cProduk');
-            }
+            );
+            $this->mProduk->insertProduk($data);
+            $this->session->set_flashdata('success', 'Data Produk Berhasil Disimpan!');
+            redirect('Supplier/cProduk');
         }
+        // }
     }
     public function editProduk($id)
     {
         $this->form_validation->set_rules('nama', 'Nama Produk', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Produk', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan Produk', 'required');
+        $this->form_validation->set_rules('size', 'Size Produk', 'required');
+        $this->form_validation->set_rules('harga', 'Harga Produk', 'required');
+        $this->form_validation->set_rules('stok', 'Stok Produk', 'required');
         if ($this->form_validation->run() == TRUE) {
-            $config['upload_path']          = './asset/foto-produk';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 5000;
+            // $config['upload_path']          = './asset/foto-produk';
+            // $config['allowed_types']        = 'gif|jpg|png';
+            // $config['max_size']             = 5000;
 
-            $this->load->library('upload', $config);
+            // $this->load->library('upload', $config);
 
-            if (!$this->upload->do_upload('gambar')) {
-                $data = array(
-                    'produk' => $this->mProduk->edit($id)
-                );
-                $this->load->view('Supplier/Layout/head');
-                $this->load->view('Supplier/Layout/aside');
-                $this->load->view('Supplier/Produk/vUpdateProduk', $data);
-                $this->load->view('Supplier/Layout/footer');
-            } else {
-                $produk = $this->mProduk->selectProduk();
-                if ($produk->gambar !== "") {
-                    unlink('./asset/foto-produk/' . $produk->gambar);
-                }
-                $upload_data =  $this->upload->data();
-                $data = array(
-                    'nama_produk' => $this->input->post('nama'),
-                    'deskripsi' => $this->input->post('deskripsi'),
-                    'gambar' => $upload_data['file_name'],
-                    'size' => $this->input->post('size'),
-                    'price_supp' => $this->input->post('harga'),
-                    'stok_supp' => $this->input->post('stok')
-                );
-                $this->mProduk->updateProduk($id, $data);
-                $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
-                redirect('Supplier/cProduk');
-            } //tanpa ganti gambar
+            // if (!$this->upload->do_upload('gambar')) {
+            //     $data = array(
+            //         'produk' => $this->mProduk->edit($id)
+            //     );
+            //     $this->load->view('Supplier/Layout/head');
+            //     $this->load->view('Supplier/Layout/aside');
+            //     $this->load->view('Supplier/Produk/vUpdateProduk', $data);
+            //     $this->load->view('Supplier/Layout/footer');
+            // } else {
+            //     $produk = $this->mProduk->selectProduk();
+            //     if ($produk->gambar !== "") {
+            //         unlink('./asset/foto-produk/' . $produk->gambar);
+            //     }
+            //     $upload_data =  $this->upload->data();
             $data = array(
-                'nama_produk' => $this->input->post('nama'),
-                'deskripsi' => $this->input->post('deskripsi'),
+                'id_supplier' => $this->session->userdata('id'),
+                'nama_bb' => $this->input->post('nama'),
+                'keterangan' => $this->input->post('keterangan'),
+                // 'gambar' => $upload_data['file_name'],
                 'size' => $this->input->post('size'),
-                'price_supp' => $this->input->post('harga'),
-                'stok_supp' => $this->input->post('stok')
+                'harga_bb' => $this->input->post('harga'),
+                'stok_bb' => $this->input->post('stok'),
             );
-            $this->mProduk->updateProduk($id, $data);
+            $this->mProduk->updatebahan_baku($id, $data);
             $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
             redirect('Supplier/cProduk');
+            // } //tanpa ganti gambar
+            // $data = array(
+            //     'nama_produk' => $this->input->post('nama'),
+            //     'deskripsi' => $this->input->post('deskripsi'),
+            //     'size' => $this->input->post('size'),
+            //     'price_supp' => $this->input->post('harga'),
+            //     'stok_supp' => $this->input->post('stok')
+            // );
+            // $this->mProduk->updateProduk($id, $data);
+            // $this->session->set_flashdata('success', 'Data Produk Berhasil Diperbaharui !!!');
+            // redirect('Supplier/cProduk');
+        } else {
+
+
+            $data = array(
+                'produk' => $this->mProduk->edit($id)
+            );
+            $this->load->view('Supplier/Layout/head');
+            $this->load->view('Supplier/Layout/aside');
+            $this->load->view('Supplier/Produk/vUpdateProduk', $data);
+            $this->load->view('Supplier/Layout/footer');
         }
-        $data = array(
-            'produk' => $this->mProduk->edit($id)
-        );
-        $this->load->view('Supplier/Layout/head');
-        $this->load->view('Supplier/Layout/aside');
-        $this->load->view('Supplier/Produk/vUpdateProduk', $data);
-        $this->load->view('Supplier/Layout/footer');
     }
     public function delete($id)
     {
