@@ -129,6 +129,24 @@
     });
   </script>
 
+  <script>
+    console.log = function() {}
+    $("#produk_bb").on('change', function() {
+
+      $(".stok").html($(this).find(':selected').attr('data-stok'));
+      $(".stok").val($(this).find(':selected').attr('data-stok'))
+
+    });
+  </script>
+  <script>
+    console.log = function() {}
+    $("#produk_jadi").on('change', function() {
+
+      $(".stok_produk").html($(this).find(':selected').attr('data-stok-produk'));
+      $(".stok_produk").val($(this).find(':selected').attr('data-stok-produk'))
+
+    });
+  </script>
   </body>
 
   </html>

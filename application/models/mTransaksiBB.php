@@ -48,7 +48,7 @@ class mTransaksiBB extends CI_Model
     public function detail_transaksi_produk($id)
     {
         $data['transaksi'] = $this->db->query("SELECT * FROM `invoice_bb` JOIN user ON user.id_user=invoice_bb.id_user JOIN supplier ON invoice_bb.id_supplier=supplier.id_supplier WHERE invoice_bb.id_invoice='" . $id . "';")->row();
-        $data['produk'] = $this->db->query("SELECT * FROM `invoice_bb` JOIN detail_invoicebb ON invoice_bb.id_invoice=detail_invoicebb.id_invoice JOIN produk ON detail_invoicebb.id_produk=produk.id_produk WHERE invoice_bb.id_invoice='" . $id . "';")->result();
+        $data['produk'] = $this->db->query("SELECT * FROM `invoice_bb` JOIN detail_invoicebb ON invoice_bb.id_invoice=detail_invoicebb.id_invoice JOIN bahan_baku ON detail_invoicebb.id_bb=bahan_baku.id_bb WHERE invoice_bb.id_invoice='" . $id . "';")->result();
         return $data;
     }
     public function detail_transaksi_sablon($id)

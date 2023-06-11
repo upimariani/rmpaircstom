@@ -49,34 +49,34 @@ class cTransaksiSupplier extends CI_Controller
         );
         $this->mTransaksiSupplier->status_konfirmasi($id, $data);
 
-        //update stok gudang
-        if ($type == '1') {
-            $detail = $this->mTransaksiBB->detail_transaksi_produk($id);
-            $stok = 0;
-            foreach ($detail['produk'] as $key => $value) {
-                $produk = $this->mTransaksiSupplier->produk($value->id_produk);
-                $stok = $value->qty_bb + $produk->stok_gudang;
-                $data_stok = array(
+        // //update stok gudang
+        // if ($type == '1') {
+        //     $detail = $this->mTransaksiBB->detail_transaksi_produk($id);
+        //     $stok = 0;
+        //     foreach ($detail['produk'] as $key => $value) {
+        //         $produk = $this->mTransaksiSupplier->produk($value->id_produk);
+        //         $stok = $value->qty_bb + $produk->stok_gudang;
+        //         $data_stok = array(
 
-                    'stok_gudang' => $stok
-                );
-                $this->db->where('id_produk', $value->id_produk);
-                $this->db->update('produk', $data_stok);
-            }
-        } else {
-            $detail = $this->mTransaksiBB->detail_transaksi_sablon($id);
-            $stok = 0;
-            foreach ($detail['sablon'] as $key => $value) {
-                $sablon = $this->mTransaksiSupplier->sablon($value->id_sablon);
-                $stok = $value->qty_sablon + $sablon->stok_gudang;
+        //             'stok_gudang' => $stok
+        //         );
+        //         $this->db->where('id_produk', $value->id_produk);
+        //         $this->db->update('produk', $data_stok);
+        //     }
+        // } else {
+        //     $detail = $this->mTransaksiBB->detail_transaksi_sablon($id);
+        //     $stok = 0;
+        //     foreach ($detail['sablon'] as $key => $value) {
+        //         $sablon = $this->mTransaksiSupplier->sablon($value->id_sablon);
+        //         $stok = $value->qty_sablon + $sablon->stok_gudang;
 
-                $data_stok_sablon = array(
-                    'stok_gudang' => $stok
-                );
-                $this->db->where('id_sablon', $value->id_sablon);
-                $this->db->update('sablon', $data_stok_sablon);
-            }
-        }
+        //         $data_stok_sablon = array(
+        //             'stok_gudang' => $stok
+        //         );
+        //         $this->db->where('id_sablon', $value->id_sablon);
+        //         $this->db->update('sablon', $data_stok_sablon);
+        //     }
+        // }
         $this->session->set_flashdata('success', 'Transaksi Berhasil Di Konfirmasi!!!');
         redirect('Supplier/cTransaksiSupplier');
     }

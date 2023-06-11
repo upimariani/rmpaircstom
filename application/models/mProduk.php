@@ -34,35 +34,7 @@ class mProduk extends CI_Model
     }
 
 
-    //size
-    public function selectSize($id)
-    {
-        $data['size'] = $this->db->query("SELECT * FROM `size` JOIN produk ON size.id_produk=produk.id_produk WHERE produk.id_produk='" . $id . "'")->result();
-        $data['produk'] = $this->db->query("SELECT * FROM `produk` WHERE id_produk='" . $id . "'")->row();
-        return $data;
-    }
-    public function insertSize($data)
-    {
-        $this->db->insert('size', $data);
-    }
-    public function editSize($id)
-    {
-        $this->db->select('*');
-        $this->db->from('size');
-        $this->db->join('produk', 'size.id_produk = produk.id_produk', 'left');
-        $this->db->where('size.id_size', $id);
-        return $this->db->get()->row();
-    }
-    public function updateSize($id, $data)
-    {
-        $this->db->where('id_size', $id);
-        $this->db->update('size', $data);
-    }
-    public function deleteSize($id)
-    {
-        $this->db->where('id_size', $id);
-        $this->db->delete('size');
-    }
+
 
 
     //gudang
@@ -70,7 +42,25 @@ class mProduk extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('produk');
-
+        return $this->db->get()->result();
+    }
+    public function bb_produk()
+    {
+        $this->db->select('*');
+        $this->db->from('detail_invoicebb');
+        $this->db->join('invoice_bb', 'detail_invoicebb.id_invoice = invoice_bb.id_invoice', 'left');
+        $this->db->join('bahan_baku', 'detail_invoicebb.id_bb = bahan_baku.id_bb', 'left');
+        $this->db->where('status_pesan=2');
+        $this->db->where('sisa_bb!=0');
+        return $this->db->get()->result();
+    }
+    public function sablon_stok()
+    {
+        $this->db->select('*');
+        $this->db->from('detail_invoicesb');
+        $this->db->join('invoice_bb', 'detail_invoicesb.id_invoice = invoice_bb.id_invoice', 'left');
+        $this->db->join('sablon', 'detail_invoicesb.id_Sablon = sablon.id_Sablon', 'left');
+        $this->db->where('status_pesan=2');
         return $this->db->get()->result();
     }
     public function update_harga($id, $data)
@@ -81,8 +71,17 @@ class mProduk extends CI_Model
     public function harga_bb()
     {
         $this->db->select('*');
+        $this->db->from('detail_invoicebb');
+        $this->db->join('invoice_bb', 'detail_invoicebb.id_invoice = invoice_bb.id_invoice', 'left');
+        $this->db->join('bahan_baku', 'detail_invoicebb.id_bb = bahan_baku.id_bb', 'left');
+        $this->db->where('status_pesan=2');
+        return $this->db->get()->result();
+    }
+    public function produk_jadi()
+    {
+        $this->db->select('*');
         $this->db->from('produk');
-        $this->db->where('price_gudang!=0');
+
         return $this->db->get()->result();
     }
 }

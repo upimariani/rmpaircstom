@@ -19,9 +19,9 @@
             </div>
 
         </div><!-- /.container-fluid -->
-        <a href="#" class="btn btn-app" data-toggle="modal" data-target="#small-modal" type="button">
+        <!-- <a href="#" class="btn btn-app" data-toggle="modal" data-target="#small-modal" type="button">
             <i class="fas fa-plus"></i> Tambah Informasi Harga
-        </a>
+        </a> -->
         <?php
         if ($this->session->userdata('success')) {
         ?>
@@ -50,40 +50,42 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar Produk</th>
+                                        <!-- <th>Gambar Produk</th> -->
                                         <th>Nama Produk</th>
                                         <th>Harga Supplier</th>
-                                        <th>Harga Gudang</th>
-                                        <th class="text-center">Action</th>
+                                        <th>Stok Gudang</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
                                     foreach ($harga_produk as $key => $value) {
+                                        if ($value->sisa_bb != '0') {
+                                            # code...
+
                                     ?>
-                                        <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td>
-                                            <td><?= $value->nama_produk ?></td>
-                                            <td>Rp. <?= number_format($value->price_supp)  ?></td>
-                                            <td>Rp. <?= number_format($value->price_gudang)  ?></td>
-                                            <td class="text-center"> <a href="#" class="btn btn-app" data-toggle="modal" data-target="#edit<?= $value->id_produk ?>" type="button">
+                                            <tr>
+                                                <td><?= $no++ ?></td>
+                                                <!-- <td><img style="width: 150px;" src="<?= base_url('asset/foto-produk/' . $value->gambar) ?>"></td> -->
+                                                <td><?= $value->nama_bb ?></td>
+                                                <td>Rp. <?= number_format($value->harga_bb)  ?></td>
+                                                <td><?= $value->sisa_bb  ?></td>
+                                                <!-- <td class="text-center"> <a href="#" class="btn btn-app" data-toggle="modal" data-target="#edit<?= $value->id_produk ?>" type="button">
                                                     <i class="fas fa-edit"></i> Edit
-                                                </a></td>
-                                        </tr>
+                                                </a></td> -->
+                                            </tr>
                                     <?php
+                                        }
                                     }
                                     ?>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>No</th>
-                                        <th>Gambar Produk</th>
+                                        <!-- <th>Gambar Produk</th> -->
                                         <th>Nama Produk</th>
                                         <th>Harga Supplier</th>
                                         <th>Harga Gudang</th>
-                                        <th class="text-center">Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -102,7 +104,7 @@
 </div>
 
 
-
+<!-- 
 <form action="<?= base_url('Gudang/cBahanBaku/create') ?>" method="POST">
     <div class="modal fade" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -183,4 +185,4 @@ foreach ($harga_produk as $key => $item) {
 <?php
     # code...
 }
-?>
+?> -->

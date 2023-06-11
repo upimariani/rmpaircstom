@@ -112,23 +112,23 @@
 										?>
 											<tr>
 												<td><a href="pages/examples/invoice.html"><?= $no++ ?></a></td>
-												<td><?= $value->nama_produk ?></td>
+												<td><?= $value->nama_bb ?></td>
 												<td><?= $value->size ?></td>
 												<td><?php
-													if ($value->stok_supp <= 2) {
+													if ($value->stok_bb <= 2) {
 													?>
-														<span class="badge badge-danger"><?= $value->stok_supp ?></span>
+														<span class="badge badge-danger"><?= $value->srok_bb ?></span>
 													<?php
 													} else {
 													?>
-														<span class="badge badge-success"><?= $value->stok_supp ?></span>
+														<span class="badge badge-success"><?= $value->stok_bb ?></span>
 													<?php
 													}
 													?>
 
 												</td>
 												<td><?php
-													if ($value->stok_supp <= 2) {
+													if ($value->stok_bb <= 2) {
 													?>
 														<span class="badge badge-danger">Stok Produk Segera Habis!!!</span>
 													<?php
