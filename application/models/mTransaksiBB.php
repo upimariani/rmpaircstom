@@ -7,7 +7,7 @@ class mTransaksiBB extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('invoice_bb');
-        $this->db->join('supplier', 'invoice_bb.id_supplier = invoice_bb.id_supplier', 'left');
+        $this->db->join('supplier', 'invoice_bb.id_supplier = supplier.id_supplier', 'left');
         $this->db->join('user', 'user.id_user = invoice_bb.id_user', 'left');
         return $this->db->get()->result();
     }

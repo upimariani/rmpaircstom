@@ -40,6 +40,15 @@ class cTransaksiPelanggan extends CI_Controller
         $this->load->view('Gudang/vDetailTransaksiPelanggan', $data);
         $this->load->view('Gudang/Layout/footer');
     }
+    public function selesai($id)
+    {
+        $data = array(
+            'status_order' => '3'
+        );
+        $this->mTransaksiKons->konfirmasi($id, $data);
+        $this->session->set_flashdata('success', 'Transaksi Customer Berhasil Diterima!!');
+        redirect('Konsumen/cTransaksiKonsumen');
+    }
 }
 
 /* End of file cTransaksiPelanggan.php */

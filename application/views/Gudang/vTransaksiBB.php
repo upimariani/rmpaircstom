@@ -85,11 +85,18 @@
                                                 ?>
                                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                                 <?php
+                                                } else if ($value->status_pesan == '2') {
+                                                ?>
+                                                    <span class="badge badge-info">Dikirim</span>
+                                                    <a class="btn btn-warning btn-sm" href="<?= base_url('Supplier/cTransaksiSupplier/pesanan_diterima/' . $value->id_invoice) ?>">Pesanan Diterima</a>
+
+                                                <?php
                                                 } else {
                                                 ?>
                                                     <span class="badge badge-success">Selesai</span>
                                                 <?php
-                                                }  ?>
+                                                }
+                                                ?>
                                             </td>
                                             <td><?php if ($value->type_transaksi == '1') {
                                                 ?>

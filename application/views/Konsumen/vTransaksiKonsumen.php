@@ -82,6 +82,11 @@
                                                 ?>
                                                     <span class="badge badge-warning">Menunggu Konfirmasi</span>
                                                 <?php
+                                                } else if ($value->status_order == '2') {
+                                                ?>
+                                                    <span class="badge badge-info">Dikirim</span>
+                                                    <a href="<?= base_url('Gudang/cTransaksiPelanggan/selesai/' . $value->id_transaksi) ?>" class="btn btn-warning">Diterima</a>
+                                                <?php
                                                 } else {
                                                 ?>
                                                     <span class="badge badge-success">Selesai</span>

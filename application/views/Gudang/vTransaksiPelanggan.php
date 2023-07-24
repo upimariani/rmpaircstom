@@ -78,7 +78,12 @@
                                                 <?php
                                                 } else if ($value->status_order == '2') {
                                                 ?>
+                                                    <span class="badge badge-info">Dikirim</span>
+                                                <?php
+                                                } else {
+                                                ?>
                                                     <span class="badge badge-success">Selesai</span>
+
                                                 <?php
                                                 }
                                                 ?>

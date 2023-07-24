@@ -71,19 +71,23 @@
                                             <td><?php if ($value->status_pesan == '0') {
                                                 ?>
                                                     <span class="badge badge-danger">Belum Bayar</span>
-
-
                                                 <?php
                                                 } else if ($value->status_pesan == '1') {
                                                 ?>
                                                     <span class="badge badge-warning">Menunggu Konfirmasi</span><br>
                                                     <a class="btn btn-warning" href="<?= base_url('Supplier/cTransaksiSupplier/konfirmasi/' . $value->id_invoice . '/' . $value->type_transaksi) ?>">Konfirmasi</a>
                                                 <?php
+                                                } else if ($value->status_pesan == '2') {
+                                                ?>
+                                                    <span class="badge badge-info">Dikirim</span>
+                                                <?php
                                                 } else {
                                                 ?>
                                                     <span class="badge badge-success">Selesai</span>
                                                 <?php
-                                                }  ?>
+                                                }
+                                                ?>
+
                                             </td>
                                             <td><?php if ($value->type_transaksi == '1') {
                                                 ?>

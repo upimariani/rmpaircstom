@@ -80,6 +80,15 @@ class cTransaksiSupplier extends CI_Controller
         $this->session->set_flashdata('success', 'Transaksi Berhasil Di Konfirmasi!!!');
         redirect('Supplier/cTransaksiSupplier');
     }
+    public function pesanan_diterima($id_transaksi)
+    {
+        $data = array(
+            'status_pesan' => '3'
+        );
+        $this->mTransaksiSupplier->status_konfirmasi($id_transaksi, $data);
+        $this->session->set_flashdata('success', 'Transaksi Berhasil Diterima!!!');
+        redirect('Gudang/cTransaksiBB');
+    }
 }
 
 /* End of file cTransaksiSupplier.php */

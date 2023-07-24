@@ -114,7 +114,7 @@
                                                 <td><?= $value->nama_produk ?></td>
                                                 <td><?= $value->size ?></td>
                                                 <td><?php
-                                                    if ($value->stok_gudang <= 2) {
+                                                    if ($value->stok_gudang <= 30) {
                                                     ?>
                                                         <span class="badge badge-danger"><?= $value->stok_gudang ?></span>
                                                     <?php
@@ -127,7 +127,7 @@
 
                                                 </td>
                                                 <td><?php
-                                                    if ($value->stok_gudang <= 2) {
+                                                    if ($value->stok_gudang <= 30) {
                                                     ?>
                                                         <span class="badge badge-danger">Stok Produk Segera Habis!!!</span>
                                                     <?php

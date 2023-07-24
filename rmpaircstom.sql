@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Apr 2023 pada 00.16
+-- Waktu pembuatan: 14 Jun 2023 pada 00.37
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -43,7 +43,9 @@ CREATE TABLE `bahan_baku` (
 
 INSERT INTO `bahan_baku` (`id_bb`, `id_supplier`, `nama_bb`, `keterangan`, `harga_bb`, `stok_bb`, `size`) VALUES
 (1, 1, 'Baju Polos Merah', 'Baju Cotton warna merah', '30000', 37, 'XL'),
-(2, 1, 'Kaos Biru Polos', 'Cotton Premium', '45000', 100, 'L');
+(2, 1, 'Kaos Biru Polos', 'Cotton Premium', '45000', 100, 'L'),
+(3, 3, 'Kaos O-Neck', 'Jenis Kaos Standar', '55000', 120, 'XL'),
+(4, 3, 'Kaos O-Neck Klasik', 'Kaos Oblong', '57000', 120, 'L');
 
 -- --------------------------------------------------------
 
@@ -100,7 +102,6 @@ CREATE TABLE `detail_transaksi` (
   `id_detail` int(11) NOT NULL,
   `id_transaksi` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
-  `gambar_sablon` text NOT NULL,
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -108,15 +109,15 @@ CREATE TABLE `detail_transaksi` (
 -- Dumping data untuk tabel `detail_transaksi`
 --
 
-INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_produk`, `gambar_sablon`, `qty`) VALUES
-(1, 1, 1, '0', 4),
-(2, 1, 2, '0', 1),
-(3, 2, 1, '0', 1),
-(4, 2, 3, '0', 1),
-(5, 3, 1, '0', 2),
-(6, 3, 3, '0', 1),
-(7, 4, 2, '0', 1),
-(8, 5, 2, '0', 1);
+INSERT INTO `detail_transaksi` (`id_detail`, `id_transaksi`, `id_produk`, `qty`) VALUES
+(1, 1, 1, 4),
+(2, 1, 2, 1),
+(3, 2, 1, 1),
+(4, 2, 3, 1),
+(5, 3, 1, 2),
+(6, 3, 3, 1),
+(7, 4, 2, 1),
+(8, 5, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -193,7 +194,7 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `deskripsi`, `gambar`, `size`,
 (1, 'Blue Street', '<p>Kaos Terdiri dari bahan <span style=\"background-color: rgb(255, 255, 0);\">katton 100 %</span> asli</p>', '2021_Hip_Hop_Streetwear_Harajuku_T_Shirt_Girl_Japanese_Kanji1.jpg', 'XL', '70000', 10),
 (2, 'Street Blue White', '<p>Kaos terbuat dari <span style=\"background-color: rgb(255, 255, 0);\"><font color=\"#c67ba5\">100% catton</font></span></p>', 'Camiseta_de_manga_corta_de_color_combinado___SHEIN….jpg', 'XL', '60000', 5),
 (3, 'Red Evil', 'Red Evil Cotton Premium', 'Monero___XMR_OSB_T-Shirt_Premium_-_Red___3XL.png', 'L', '75000', 28),
-(6, 'Street Anime edit', '<p>Kaos Bahan Premium 100% Caton</p>', 'Screenshot_2022-06-27_121156.png', 'XL', '55000', 0);
+(6, 'Street Anime edit', '<p>Kaos Bahan Premium 100% Caton</p>', 'Screenshot_2022-06-27_121156.png', 'XL', '55000', 5);
 
 -- --------------------------------------------------------
 
@@ -239,7 +240,8 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `alamat_supplier`, `nama_toko`, `no_hp_supplier`, `username_supp`, `pass_supp`) VALUES
-(1, 'Ahmad', 'Gunungkeling, Kuningan Jawa Barat', 'Berkah Jaya', '0875698745633', 'supplier', 'supplier');
+(1, 'Ahmad', 'Gunungkeling, Kuningan Jawa Barat', 'Berkah Jaya', '0875698745633', 'supplier', 'supplier'),
+(3, 'Maman Ahmad', 'Windujanten', 'Sabar Jaya', '089887121123', 'mamanahmad', 'mamanahmad');
 
 -- --------------------------------------------------------
 
@@ -370,7 +372,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
-  MODIFY `id_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_bb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_invoicebb`
@@ -418,7 +420,7 @@ ALTER TABLE `sablon`
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi_cust`

@@ -50,7 +50,7 @@ class mProduk extends CI_Model
         $this->db->from('detail_invoicebb');
         $this->db->join('invoice_bb', 'detail_invoicebb.id_invoice = invoice_bb.id_invoice', 'left');
         $this->db->join('bahan_baku', 'detail_invoicebb.id_bb = bahan_baku.id_bb', 'left');
-        $this->db->where('status_pesan=2');
+        $this->db->where('status_pesan=3');
         $this->db->where('sisa_bb!=0');
         return $this->db->get()->result();
     }
@@ -60,7 +60,7 @@ class mProduk extends CI_Model
         $this->db->from('detail_invoicesb');
         $this->db->join('invoice_bb', 'detail_invoicesb.id_invoice = invoice_bb.id_invoice', 'left');
         $this->db->join('sablon', 'detail_invoicesb.id_Sablon = sablon.id_Sablon', 'left');
-        $this->db->where('status_pesan=2');
+        $this->db->where('status_pesan=3');
         return $this->db->get()->result();
     }
     public function update_harga($id, $data)
